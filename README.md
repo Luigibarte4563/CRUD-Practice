@@ -20,7 +20,7 @@ It is intended for learning and practicing basic web development concepts.
 
 - PHP
 - HTML
-- MySQL 
+- MySQL  
 
 ---
 
