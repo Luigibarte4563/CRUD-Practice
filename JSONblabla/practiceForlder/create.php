@@ -1,0 +1,37 @@
+<?php
+require 'connection.php';
+header("Content-Type: application/json");
+
+$data = json_decode(file_get_contents("php://input"), true);
+
+$name = $data['name'] ?? null;
+$age = $data['age'] ?? null;
+$program = $data['program'] ?? null;
+
+if (empty($name) || empty($age) || empty($program)) {
+    http_response_code(400);
+    echo json_encode([
+        "status" => "failed",
+        "message" => "all fields are required"
+    ]);
+    exit();
+}
+
+try {
+    $sql = "INSERT INTO students (name, age, program) VALUE (?,?,?)";
+    $stmt = $conn->prepare($sql);
+
+    $stmt->execute([
+        $name,
+        $age,
+        $program
+    ]);
+
+    echo json_encode([
+        "status" => "success",
+        "message" => "Record is added"
+    ]);
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+?>
