@@ -1,4 +1,4 @@
-# CRUD Practice
+# CRUD Practice 
 
 This project is a **simple CRUD (Create, Read, Update, Delete) practice** using PHP.  
 It is intended for learning and practicing basic web development concepts.
