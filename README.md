@@ -10,7 +10,7 @@ It is intended for learning and practicing basic web development concepts.
 
 - Practice PHP form handling
 - Understand CRUD operations
-- Learn basic logic flow (add, view, edit, delete)
+- Learn basic logic flow (add,  view,  edit,  delete)
 - Improve PHP fundamentals
 
 > ⚠️ This project is for **practice only**, not production use.
