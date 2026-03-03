@@ -15,7 +15,7 @@ $method = $_SERVER["REQUEST_METHOD"];
 $uri = parse_url($url, PHP_URL_PATH);
 
 // Remove "/api" from the URL (example: /api/users → /users)
-$uri = str_replace("/BLK05", "", $uri);
+$uri = str_replace("/RESTful_API/api", "", $uri);
 
 // Convert URL into array parts
 // Example: /users/5 → ["users", "5"]
