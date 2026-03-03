@@ -1,44 +1,156 @@
-# CRUD Practice 
+# PHP Project with Environment Configuration
 
-This project is a **simple CRUD (Create, Read, Update, Delete) practice** using PHP.  
-It is intended for learning and practicing basic web development concepts.
+## 📌 Overview
 
----
+This project is a PHP-based system that uses Composer and environment variables for secure configuration management.
 
+Sensitive information such as database credentials and API keys are stored inside a `.env` file instead of hardcoding them into PHP files.
 
-## 🎯 Purpose
+The project uses:
 
-- Practice PHP form handling
-- Understand CRUD operations
-- Learn basic logic flow (add,  view,  edit,  delete)
-- Improve PHP fundamentals
-
-> ⚠️ This project is for **practice only**, not production use.
+* PHP 8.2+
+* XAMPP
+* Composer
+* vlucas/phpdotenv
 
 ---
 
-## 🛠 Technologies Used
+## 🚀 Requirements
 
-- PHP
-- HTML
-- MySQL  
+* PHP 8.2 or higher
+* XAMPP (Apache + MySQL)
+* Composer installed
 
----
-
-## 📌 CRUD Operations
-
-| Operation | Description |
-|---------|-------------|
-| Create | Add new data |
-| Read | Display existing data |
-| Update | Edit existing data |
-| Delete | Remove data |
+Composer Official Website:
+https://getcomposer.org
 
 ---
 
-## 🚀 How to Run
+## 📦 Installation Guide
 
-1. Install **XAMPP / WAMP / MAMP**
-2. Clone the repository:
-   ```bash
-   git clone https://github.com/Luigibarte4563/CRUD-Practice.git
+### 1️⃣ Clone or Download the Project
+
+Place the project folder inside:
+
+```
+C:\xampp\htdocs\
+```
+
+---
+
+### 2️⃣ Install Dependencies
+
+Open CMD inside the project folder and run:
+
+```
+composer install
+```
+
+If installing dotenv for the first time:
+
+```
+composer require vlucas/phpdotenv
+```
+
+---
+
+### 3️⃣ Create .env File
+
+Create a file named:
+
+```
+.env
+```
+
+Inside the project root.
+
+Example:
+
+```
+DB_HOST=localhost
+DB_NAME=your_database
+DB_USER=root
+DB_PASS=
+API_KEY=your_api_key_here
+```
+
+⚠ Important: Add `.env` to your `.gitignore` file to protect sensitive data.
+
+---
+
+## ⚙ Configuration File (config.php)
+
+```php
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+```
+
+---
+
+## 🗄 Example Database Connection
+
+```php
+<?php
+require 'config.php';
+
+try {
+    $conn = new PDO(
+        "mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_NAME'],
+        $_ENV['DB_USER'],
+        $_ENV['DB_PASS']
+    );
+    
+    echo "Connected successfully!";
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+```
+
+---
+
+## 📁 Recommended Folder Structure
+
+```
+project-name/
+│
+├── .env
+├── .gitignore
+├── composer.json
+├── composer.lock
+├── config.php
+├── index.php
+└── vendor/
+```
+
+---
+
+## 🔐 Security Notes
+
+* Never upload `.env` to GitHub.
+* Always use environment variables for:
+
+  * Database credentials
+  * API keys
+  * Secret tokens
+* Keep Composer dependencies updated.
+
+---
+
+## 👨‍💻 Author
+
+Luigi Barte
+BSIT Student
+Universidad de Dagupan
+
+---
+
+## 📄 License
+
+This project is for educational purposes.
+
+```
+```
