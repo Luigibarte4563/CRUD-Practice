@@ -21,43 +21,36 @@ $uri = str_replace("/RESTful_API/api", "", $uri);
 // Example: /users/5 → ["users", "5"]
 $urlParts = explode("/", trim($uri, "/"));
 
-
 // Check if first part of URL is "users"
 if($urlParts[0] == "users"){
 
     // GET /users
     // Fetch all users
-
     if($method == "GET" && count($urlParts) == 1){
-        require './apis/get.php';
-
-    
+        require './apis/getAll.php';
 
     }elseif($method == "GET" && count($urlParts) == 2){
        // GET /users/{id}
-    // Fetch single user by ID
-    //Assignment
-
-    
+        // Fetch single user by ID
+        //Assignment
+        $id = $urlParts[1];
+        require './apis/getById.php';
 
     }elseif($method == "POST" && count($urlParts) == 1){
         require './apis/post.php';
         // POST /users
-    // Add new user
-
-   
+        // Add new user
 
     }elseif(($method == "PUT" || $method == "PATCH") && count($urlParts) == 2){
         $id = $urlParts[1];   // Get user ID from URL parts
         require './apis/update.php';
         // PUT or PATCH /users/{id}
-  
- 
+
     }elseif($method == "DELETE" && count($urlParts) == 2){
         $id = $urlParts[1];   // Get user ID from URL parts
         require './apis/delete.php';
-          // DELETE /users/{id}
-    // Delete user
+        // DELETE /users/{id}
+        // Delete user
 
     // If method does not match
     }else{
@@ -67,7 +60,6 @@ if($urlParts[0] == "users"){
             "message" => "Invalid Method"
         ]);
     }
-
 }else{
     // If URL is not /users
     http_response_code(400);
